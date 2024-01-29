@@ -1,0 +1,130 @@
+.banner-logo{
+    max-width:100px;
+}
+.header-main-container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.header-shadow{
+    box-shadow:1px 1px 10px rgb(216, 209, 209);
+}
+.logo-name a{
+    text-decoration: none;
+}
+.city-name{
+    border-bottom: 1px solid black;
+    margin-right:10px;
+    color: black;
+    font-weight: bold;
+}
+.name{
+    color: rgb(175, 165, 165);
+}
+.bi-chevron-down{
+    margin-left: 10px;
+    font-weight:bolder;
+    font-size: 15px;
+    color: orangered;
+}
+.list-item{
+    margin-right: 2rem;
+}
+.list-link{
+    text-decoration: none;
+    color: rgb(50, 49, 49);
+    font-weight: 600;
+}
+.list-icon{
+    margin-right: 0.7rem;
+}
+main{
+    margin-top: 5px;
+}
+.main-container{
+    margin:0 5rem;
+    padding: 1rem 0;
+}
+.tag-name{
+    font-weight: bold;
+}
+.menu-card img{
+    max-width: 150px;
+}
+.menu-section{
+    display: flex;
+    /* flex-wrap: wrap; */
+    padding: 15px;
+    justify-content: space-between;
+    overflow: scroll;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid #ede7e7;
+}
+.menu-card{
+    margin:10px 5px;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.res-card{
+    width: 270px;
+}
+/* .res-card-img{
+  max-width: 260px;
+  height: 170px;
+  border: 1px solid black;
+  border-radius: 20px;
+  overflow: hidden;
+} */
+.res-card-img img{
+    width:270px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.res-name{
+    padding:10px 0;
+    padding-top: 2rem;
+}
+.res-card-footer{
+    padding-left: 10px;
+}
+.restro-name{
+    padding-top:15px;
+    margin-bottom: 0;
+    font-size: 17px;
+    color: rgb(50, 49, 49);
+    font-weight: 600;
+}
+.res-rating i{
+    color: green;
+}
+.res-rating{
+    color: rgb(50, 49, 49);
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+.cuisines{
+    margin-bottom: 0;
+    color: gray;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    width: 270px;
+}
+.areaName{
+    color:gray;
+}
+.res-section{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
