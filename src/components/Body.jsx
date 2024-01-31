@@ -1,4 +1,3 @@
-import { BannerData, TopRestaurant } from "../utils/mockData";
 import RestaurantSection from "./RestaurantSection";
 import BananerSection from "./BannerSection";
 
