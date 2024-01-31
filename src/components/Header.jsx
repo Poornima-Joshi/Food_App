@@ -1,12 +1,14 @@
-const HeaderComponent = () => {
+import { LOGO_URL } from "../utils/constants";
+
+const Header = () => {
   return (
-    <>
+    <header>
       <div className="header-shadow">
         <div className="container">
           <div className="header-main-container">
             <div>
               <img
-                src="https://logos-world.net/wp-content/uploads/2020/11/Swiggy-Emblem.png"
+                src={LOGO_URL}
                 className="banner-logo"
               />
               <span className="logo-name">
@@ -53,8 +55,7 @@ const HeaderComponent = () => {
           </div>
         </div>
       </div>
-      
-    </>
+    </header>
   );
 };
-export default HeaderComponent;
+export default Header;
