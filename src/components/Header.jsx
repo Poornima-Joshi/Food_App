@@ -1,4 +1,5 @@
 import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -7,13 +8,15 @@ const Header = () => {
         <div className="container">
           <div className="header-main-container">
             <div>
-              <img
-                src={LOGO_URL}
-                className="banner-logo"
-              />
+              <Link to="/">
+                <img src={LOGO_URL} className="banner-logo" />
+              </Link>
               <span className="logo-name">
                 <a href="#">
-                  <span className="city-name">Jubilee Hills </span> <span className="name">Aditya Enclave, Venkatagiri,Jub...</span>
+                  <span className="city-name">Jubilee Hills </span>{" "}
+                  <span className="name">
+                    Aditya Enclave, Venkatagiri,Jub...
+                  </span>
                   <i class="bi bi-chevron-down"></i>
                 </a>
               </span>
@@ -21,34 +24,34 @@ const Header = () => {
             <div>
               <ul className="list">
                 <li className="list-item">
-                  <a href="#" className="list-link">
+                  <Link to="/search" className="list-link">
                     <i className="bi bi-search list-icon"></i>{" "}
                     <span className="list-name"> Search</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-item">
-                  <a href="#" className="list-link">
+                  <Link to="/offers" className="list-link">
                     <i class="bi bi-octagon list-icon"></i>{" "}
                     <span className="list-name"> Offers</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-item">
-                  <a href="#" className="list-link">
+                  <Link to="/help" className="list-link">
                     <i class="bi bi-question-octagon list-icon"></i>{" "}
                     <span className="list-name"> Help</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-item">
-                  <a href="#" className="list-link">
+                  <Link to="/signIn" className="list-link">
                     <i class="bi bi-person list-icon"></i>{" "}
                     <span className="list-name"> Sign In</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-item">
-                  <a href="#" className="list-link">
+                  <Link to="/cart" className="list-link">
                     <i class="bi bi-bag list-icon"></i>{" "}
                     <span className="list-name"> Cart</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
