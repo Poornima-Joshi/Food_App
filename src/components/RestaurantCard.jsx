@@ -1,10 +1,10 @@
 import { RES_URL } from "../utils/constants";
 
 
-const RestaurantCard = (props) => {
-  const { resData } = props;
-  const { id, name, cloudinaryImageId, areaName,sla, cuisines, avgRatingString } = resData?.info;
-  const {slaString} = sla.slaString
+const RestaurantCard = ({resData}) => {
+  // const { resData } = props;
+  const { id, name, cloudinaryImageId, areaName, cuisines, avgRating } = resData?.info;
+  
   return (
     <>
       <div className="res-card" key={id}>
@@ -18,10 +18,10 @@ const RestaurantCard = (props) => {
           <p className="restro-name">{name}</p>
           <p className="res-rating">
             <span>
-              <i class="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill"></i>
             </span>{" "}
-            <span>{avgRatingString}</span>{" "}
-            <span>• {slaString}</span>
+            <span>{avgRating}</span>{" "}
+            <span><i class="bi bi-dot"></i></span><span>{resData?.info?.sla?.slaString}</span>
           </p>
           <p className="cuisines">{cuisines.join(",")}</p>
           <p className="areaName">{areaName}</p>

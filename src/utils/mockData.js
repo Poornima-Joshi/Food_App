@@ -327,7 +327,7 @@ export const BannerData = [
     frequencyCapping: {},
   },
 ];
-export const TopRestaurant = [
+export const TopResData = [
   {
     info: {
       id: "344287",

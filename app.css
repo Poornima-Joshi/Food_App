@@ -1,6 +1,11 @@
 .banner-logo{
     max-width:100px;
 }
+header{
+    position:sticky;
+    top: 0;
+    background-color: #ffffff;
+}
 .header-main-container{
     display: flex;
     justify-content:space-between;
@@ -70,11 +75,16 @@ main{
 .menu-card{
     margin:10px 5px;
 }
-::-webkit-scrollbar {
+.menu-section::-webkit-scrollbar {
     display: none;
 }
 .res-card{
     width: 270px;
+    transition: 1s;
+}
+.res-card:hover{
+    transition: 1s;
+    transform: scale(0.9);
 }
 /* .res-card-img{
   max-width: 260px;
@@ -127,4 +137,8 @@ main{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.filter-container{
+    display: flex;
+    align-items: center;
 }
