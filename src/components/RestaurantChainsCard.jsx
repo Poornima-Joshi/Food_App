@@ -1,18 +1,17 @@
 import { RES_URL } from "../utils/constants";
 
 
-const RestaurantCard = ({resData}) => {
+const RestaurantChainsCard = ({resData}) => {
   // const { resData } = props;
   const { id, name, cloudinaryImageId, areaName, cuisines, avgRating } = resData?.info;
   
   return (
     <>
-      <div className="res-card">
-        <div className="res-card-img ">
+      <div className="res-card" key={id}>
+        <div className="res-card-img">
           <img
             src={RES_URL+cloudinaryImageId}
             alt=""
-            className="shadow-sm"
           />
         </div>
         <div className="res-card-footer">
@@ -31,4 +30,4 @@ const RestaurantCard = ({resData}) => {
     </>
   );
 };
-export default RestaurantCard;
+export default RestaurantChainsCard;

@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
+
+//module
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Search from "./components/Search";
@@ -7,10 +10,13 @@ import Offers from "./components/Offers";
 import Cart from "./components/Cart";
 import Help from "./components/Help";
 import SignIn from "./components/SignIn";
-import RestaurantMenu from "./components/RestaurantMenu";
-
+//import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantMenus from "./components/RestaurantMenus";
+import Children from "./components/Children";
+import ProfileClass from "./components/ProfileClass";
 import Error from "./components/Error";
-import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
+import Count from "./components/Count";
+
 
 const App = () =>{
     return(
@@ -32,6 +38,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/search",
                 element: <Search/>,
+                children:[{
+                    path : "children",
+                    element: <Children/>
+                }]
             },
             {
                 path: "/offers",
@@ -50,8 +60,21 @@ const appRouter = createBrowserRouter([
                 element: <Cart/>
             },
             {
+                path: "/profile",
+                element: <ProfileClass/>
+            },
+            {
+                path: "/count",
+                element: <Count/>
+            },
+            // {
+            //     path: "/restaurants/:resId",
+            //     element: <RestaurantMenu/>
+            // },
+            {
                 path: "/restaurants/:resId",
-                element: <RestaurantMenu/>
+                element: <RestaurantMenus/>,
+                
             }
         ],
         errorElement: <Error/>

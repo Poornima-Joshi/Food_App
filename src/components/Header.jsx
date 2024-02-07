@@ -17,7 +17,7 @@ const Header = () => {
                   <span className="name">
                     Aditya Enclave, Venkatagiri,Jub...
                   </span>
-                  <i class="bi bi-chevron-down"></i>
+                  <i className="bi bi-chevron-down"></i>
                 </a>
               </span>
             </div>
@@ -31,26 +31,38 @@ const Header = () => {
                 </li>
                 <li className="list-item">
                   <Link to="/offers" className="list-link">
-                    <i class="bi bi-octagon list-icon"></i>{" "}
+                    <i className="bi bi-octagon list-icon"></i>{" "}
                     <span className="list-name"> Offers</span>
                   </Link>
                 </li>
                 <li className="list-item">
                   <Link to="/help" className="list-link">
-                    <i class="bi bi-question-octagon list-icon"></i>{" "}
+                    <i className="bi bi-question-octagon list-icon"></i>{" "}
                     <span className="list-name"> Help</span>
                   </Link>
                 </li>
                 <li className="list-item">
                   <Link to="/signIn" className="list-link">
-                    <i class="bi bi-person list-icon"></i>{" "}
+                    <i className="bi bi-person list-icon"></i>{" "}
                     <span className="list-name"> Sign In</span>
                   </Link>
                 </li>
                 <li className="list-item">
                   <Link to="/cart" className="list-link">
-                    <i class="bi bi-bag list-icon"></i>{" "}
+                    <i className="bi bi-bag list-icon"></i>{" "}
                     <span className="list-name"> Cart</span>
+                  </Link>
+                </li>
+                <li className="list-item">
+                  <Link to="/profile" className="list-link">
+                    <i className="bi bi-bag list-icon"></i>{" "}
+                    <span className="list-name">Profile</span>
+                  </Link>
+                </li>
+                <li className="list-item">
+                  <Link to="/count" className="list-link">
+                    <i className="bi bi-bag list-icon"></i>{" "}
+                    <span className="list-name">Count</span>
                   </Link>
                 </li>
               </ul>
