@@ -1,19 +1,31 @@
 import { useParams } from "react-router-dom";
 import RestaurantSkeleton from "./RestaurantSkeleton";
-import { Link,Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenus = () => {
   const { resId } = useParams();
-  
+
   const menuData = useRestaurantMenu(resId);
 
-  
-  if(menuData===null) return <RestaurantSkeleton/>;
+  if (menuData === null) return <RestaurantSkeleton />;
 
   const { name, areaName, cuisines, sla, avgRating, totalRatingsString } =
     menuData?.data?.cards[0]?.card?.card?.info;
-    
+  console.log(
+    menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  );
+
+  const categories =
+    menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) => {
+       return c?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+      }
+    );
+    // console.log(categories);
+
   return (
     <>
       <div className="d-flex justify-content-center">
@@ -36,11 +48,17 @@ const RestaurantMenus = () => {
                 <Link to="children">children</Link>
               </div>
             </div>
-            {/* <p className="menu-info mb-0"><i className="bi bi-info-circle-fill "></i> Far (5 kms) | Additional delivery fee will apply</p> */}
+          </div>
+          <p>Menu</p>
+          <div className="mt-2">
+            {
+              categories?.map((categories)=>(
+                <RestaurantCategory data={categories?.card?.card}/>
+              ))
+            }
           </div>
         </div>
       </div>
-     
     </>
   );
 };

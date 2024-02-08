@@ -1,4 +1,4 @@
-const BannerSkeleton = () => {
+const BannerShimmer = () => {
   return (
     <>
       <div className="tag-container tag-skele">
@@ -25,4 +25,4 @@ const BannerSkeleton = () => {
     </>
   );
 };
-export default BannerSkeleton;
+export default BannerShimmer;

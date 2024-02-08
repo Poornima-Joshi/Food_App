@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withDiscountCard } from "./RestaurantCard";
 import { RES_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,10 @@ const RestaurantSection = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [storeData, setStoreData] = useState([]);
-  const [filData, setFilData] = useState({ Rating: "false", Pureveg: "false" });
-  // const [page, setPage] = useState(1);
-  
+  const [filData, setFilData] = useState({ Rating: "false", Offers: "false" });
+  //const [page, setPage] = useState(1);
+
+  const RestaurantDiscount = withDiscountCard(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -24,16 +25,17 @@ const RestaurantSection = () => {
 
   const fetchData = async () => {
     const data = await fetch(RES_API_URL);
-    //const data = await fetch(RES_API_URL + `&page=${page}`);
+    // const data = await fetch(RES_API_URL + `&page=${page}`);
     const json = await data.json();
     const restaurant =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-    
+
     // setListOfRestaurant((prev) => [...prev, ...restaurant]);
     // setStoreData((prev) => [...prev, ...restaurant]);
     setListOfRestaurant(restaurant);
     setStoreData(restaurant);
+    console.log(restaurant);
   };
   // const handleInfiniteScroll = () => {
   //   if (
@@ -103,7 +105,7 @@ const RestaurantSection = () => {
                 onChange={(e) => {
                   setFilData({
                     Rating: e.target.checked,
-                    Pureveg: filData.Pureveg,
+                    Offers: filData.Offers,
                   });
                   console.log(filData);
                 }}
@@ -113,8 +115,16 @@ const RestaurantSection = () => {
                 htmlFor="btn-check"
                 onClick={() => {
                   if (filData.Rating !== true) {
-                    const filterData = listOfRestaurant.filter((data) => {
-                      return data.info.avgRating > 4;
+                    const filterData = storeData.filter((data) => {
+                      if (data.info.avgRating > 4) {
+                        return data.info.avgRating;
+                      } else if (
+                        data.info.avgRating > 4 &&
+                        data.info.aggregatedDiscountInfoV3===true
+                      ) {
+                        return data.info.avgRating;
+                      }
+                      return null
                     });
                     setStoreData(filterData);
                   } else {
@@ -156,12 +166,25 @@ const RestaurantSection = () => {
                 className="btn-check"
                 id="btn-check-offers"
                 onChange={(e) => {
-                  setFilData(e.target.checked);
+                  setFilData({
+                    Rating: filData.Rating,
+                    Offers: e.target.checked,
+                  });
                 }}
               />
               <label
                 className="btn btn-light border"
                 htmlFor="btn-check-offers"
+                onClick={() => {
+                  if (filData.Offers !== true) {
+                    const offersData = storeData.filter((data) => {
+                      return data.info.aggregatedDiscountInfoV3;
+                    });
+                    setStoreData(offersData);
+                  } else {
+                    setStoreData(listOfRestaurant);
+                  }
+                }}
               >
                 Offers
               </label>
@@ -198,10 +221,14 @@ const RestaurantSection = () => {
             {storeData.map((restaurant) => (
               <Link
                 to={"/restaurants/" + restaurant.info.id}
-                className="res-link"
+                className="res-link position-reletive"
                 key={restaurant.info.id}
               >
-                <RestaurantCard  resData={restaurant} />
+                {restaurant.info.aggregatedDiscountInfoV3 ? (
+                  <RestaurantDiscount resData={restaurant} />
+                ) : (
+                  <RestaurantCard resData={restaurant} />
+                )}
               </Link>
             ))}
           </div>

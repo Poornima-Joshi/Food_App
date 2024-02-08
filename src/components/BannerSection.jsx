@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
-import { RES_API_URL } from "../utils/constants";
+
 import BannerCard from "./BannerCard";
-import BannerSkeleton from "./BannerSkeleton";
+import BannerShimmer from "./BannerShimmer";
+import useRestaurantData from "../utils/useRestaurantData";
+import { useEffect, useState } from "react";
 
 const BananerSection = () => {
-  const [bannerList, setBannerList] = useState([]);
-  useEffect(() => {
-    fetchBannerData(); 
-  }, []);
+  const [bannerInfo,setBannerInfo] = useState(null);
 
-  const fetchBannerData = async () => {
-    const data = await fetch(RES_API_URL);
-    const json = await data.json();
-    setBannerList(json?.data.cards[0].card.card.imageGridCards.info);
-  };
-  
-  return bannerList.length === 0 ? (
-    <BannerSkeleton/>
-  ) : (
-    <>
+  const bannerList = useRestaurantData();
+ 
+  useEffect(() => {
+    const ResData = bannerList?.data?.cards?.[0]?.card?.card?.imageGridCards?.info
+    setBannerInfo(ResData);
    
+  },[bannerList])
+
+  if(bannerInfo === null) return <BannerShimmer/>;
+  
+  return (
+    <>
       <div className="tag-container">
         <h4 className="tag-name">What's on your mind?</h4>
         <div className="tag-btn">
@@ -33,8 +32,8 @@ const BananerSection = () => {
       </div>
 
       <div className="menu-section">
-        {bannerList.map((data) => (
-          <BannerCard key={data.id} bannerData={data} />
+        {bannerInfo?.map((data) => (
+          <BannerCard key={data?.id}  bannerData={data} />
         ))}
       </div>
     </>

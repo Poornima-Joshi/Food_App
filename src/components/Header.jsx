@@ -1,7 +1,9 @@
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
+  const onlineStatus = useOnlineStatus();
   return (
     <header>
       <div className="header-shadow">
@@ -35,12 +37,12 @@ const Header = () => {
                     <span className="list-name"> Offers</span>
                   </Link>
                 </li>
-                <li className="list-item">
+                {/* <li className="list-item">
                   <Link to="/help" className="list-link">
                     <i className="bi bi-question-octagon list-icon"></i>{" "}
                     <span className="list-name"> Help</span>
                   </Link>
-                </li>
+                </li> */}
                 <li className="list-item">
                   <Link to="/signIn" className="list-link">
                     <i className="bi bi-person list-icon"></i>{" "}
@@ -64,6 +66,9 @@ const Header = () => {
                     <i className="bi bi-bag list-icon"></i>{" "}
                     <span className="list-name">Count</span>
                   </Link>
+                </li>
+                <li className="list-item">
+                 Status: {onlineStatus ? "🟢"  : "🔴"}
                 </li>
               </ul>
             </div>

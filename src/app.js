@@ -1,4 +1,4 @@
-import React from "react";
+import React,{lazy,Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
 
@@ -15,7 +15,9 @@ import RestaurantMenus from "./components/RestaurantMenus";
 import Children from "./components/Children";
 import ProfileClass from "./components/ProfileClass";
 import Error from "./components/Error";
-import Count from "./components/Count";
+//import Count from "./components/Count";
+
+const Count = lazy(() =>import("./components/Count"));
 
 
 const App = () =>{
@@ -65,7 +67,9 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/count",
-                element: <Count/>
+                element: <Suspense fallback={<h1>Loding....</h1>}>
+                    <Count/>
+                </Suspense>
             },
             // {
             //     path: "/restaurants/:resId",
