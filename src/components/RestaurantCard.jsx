@@ -1,8 +1,11 @@
 import { RES_URL } from "../utils/constants";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 
 const RestaurantCard = ({resData}) => {
   // const { resData } = props;
+  const {loggedInUser}= useContext(UserContext)
   const { id, name, cloudinaryImageId, areaName, cuisines, avgRating } = resData?.info;
   
   return (
@@ -25,7 +28,8 @@ const RestaurantCard = ({resData}) => {
             <span><i className="bi bi-dot"></i></span><span>{resData?.info?.sla?.slaString}</span>
           </p>
           <p className="cuisines">{cuisines.join(",")}</p>
-          <p className="areaName">{areaName}</p>
+          <p className="areaName mb-0">{areaName}</p>
+          <p className="text-dark">User: {loggedInUser}</p>
         </div>
       </div>
     </>

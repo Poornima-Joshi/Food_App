@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext} from "react";
 import RestaurantCard, { withDiscountCard } from "./RestaurantCard";
 import { RES_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const RestaurantSection = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -11,7 +12,7 @@ const RestaurantSection = () => {
   //const [page, setPage] = useState(1);
 
   const RestaurantDiscount = withDiscountCard(RestaurantCard);
-
+  const {loggedInUser,setUserName} = useContext(UserContext);
   useEffect(() => {
     fetchData();
   }, []);
@@ -57,6 +58,12 @@ const RestaurantSection = () => {
           </h4>
 
           <div className="filter-container pb-4">
+            <div>
+              <label>UserName:</label>
+              <input type="text" value={loggedInUser} onChange={(e)=>(
+                setUserName(e.target.value)
+              )} />
+            </div>
             <div className="search-box">
               <input
                 type="text"

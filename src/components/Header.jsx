@@ -1,9 +1,13 @@
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
+
   return (
     <header>
       <div className="header-shadow">
@@ -26,17 +30,20 @@ const Header = () => {
             <div>
               <ul className="list">
                 <li className="list-item">
+                  <span className="list-name">{loggedInUser}</span>
+                </li>
+                <li className="list-item">
                   <Link to="/search" className="list-link">
                     <i className="bi bi-search list-icon"></i>{" "}
                     <span className="list-name"> Search</span>
                   </Link>
                 </li>
-                <li className="list-item">
+                {/* <li className="list-item">
                   <Link to="/offers" className="list-link">
                     <i className="bi bi-octagon list-icon"></i>{" "}
                     <span className="list-name"> Offers</span>
                   </Link>
-                </li>
+                </li> */}
                 {/* <li className="list-item">
                   <Link to="/help" className="list-link">
                     <i className="bi bi-question-octagon list-icon"></i>{" "}
@@ -68,7 +75,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="list-item">
-                 Status: {onlineStatus ? "🟢"  : "🔴"}
+                  Status: {onlineStatus ? "🟢" : "🔴"}
                 </li>
               </ul>
             </div>

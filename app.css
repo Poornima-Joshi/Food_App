@@ -104,6 +104,9 @@ main {
   border-radius: 20px;
   object-fit: cover;
 }
+.c-pointer{
+  cursor: pointer;
+}
 
 .res-card-footer {
   padding-left: 10px;

@@ -3,11 +3,13 @@ import RestaurantSkeleton from "./RestaurantSkeleton";
 import { Link, Outlet } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenus = () => {
   const { resId } = useParams();
 
   const menuData = useRestaurantMenu(resId);
+  const [showIndex,setShowIndex] = useState();
 
   if (menuData === null) return <RestaurantSkeleton />;
 
@@ -52,8 +54,12 @@ const RestaurantMenus = () => {
           <p>Menu</p>
           <div className="mt-2">
             {
-              categories?.map((categories)=>(
-                <RestaurantCategory data={categories?.card?.card}/>
+              categories?.map((categories,index)=>(
+                <RestaurantCategory key={categories?.card?.card?.title} data={categories?.card?.card}
+                showItem={showIndex === index ? true:false}
+                setShowIndex={()=>setShowIndex(index)}
+                />
+                
               ))
             }
           </div>

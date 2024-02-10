@@ -1,4 +1,4 @@
-import { BANNER_URL } from "../utils/constants";
+import { ITEM_URL } from "../utils/constants";
 
 const ItemList = ({item}) =>{
     console.log(item);
@@ -15,7 +15,7 @@ const ItemList = ({item}) =>{
                                 <p className="w-75">{item?.card?.info?.description}</p>
                             </div>
                             <div style={{width:'150px',height:"100px"}} className="">
-                                <img src={BANNER_URL+item?.card?.info?.imageId} style={{width:'150px',height:"85px"}}  />
+                                <img src={ITEM_URL+item?.card?.info?.imageId} style={{width:'150px',height:"85px"}}  />
                                 <button className="btn btn-outline-success w-100 btn-sm mt-1 fw-bold">Add +</button>
                             </div>
                         </div>
