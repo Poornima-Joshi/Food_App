@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useContext } from "react";
-
+import { useSelector } from "react-redux";
 const Header = () => {
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <header>
@@ -53,13 +56,13 @@ const Header = () => {
                 <li className="list-item">
                   <Link to="/signIn" className="list-link">
                     <i className="bi bi-person list-icon"></i>{" "}
-                    <span className="list-name"> Sign In</span>
+                    <span className="list-name">Sign In</span>
                   </Link>
                 </li>
                 <li className="list-item">
                   <Link to="/cart" className="list-link">
                     <i className="bi bi-bag list-icon"></i>{" "}
-                    <span className="list-name"> Cart</span>
+                    <span className="list-name">Cart ({cartItems.length})</span>
                   </Link>
                 </li>
                 <li className="list-item">

@@ -1,7 +1,14 @@
+import { addItem } from "../utils/cartSlice";
 import { ITEM_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
 
 const ItemList = ({item}) =>{
-    console.log(item);
+    const dispatch = useDispatch()
+
+
+    const handelAddItem = (item) =>{
+       dispatch(addItem(item));
+    };
     
     return(
         <div>
@@ -16,7 +23,7 @@ const ItemList = ({item}) =>{
                             </div>
                             <div style={{width:'150px',height:"100px"}} className="">
                                 <img src={ITEM_URL+item?.card?.info?.imageId} style={{width:'150px',height:"85px"}}  />
-                                <button className="btn btn-outline-success w-100 btn-sm mt-1 fw-bold">Add +</button>
+                                <button className="btn btn-outline-success w-100 btn-sm mt-1 fw-bold" onClick={()=>handelAddItem(item)}>Add +</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet,createHashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 //module
 import Header from "./components/Header";
@@ -17,6 +18,7 @@ import ProfileClass from "./components/ProfileClass";
 import Error from "./components/Error";
 //import Count from "./components/Count";
 import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
 
 const Count = lazy(() => import("./components/Count"));
 
@@ -31,15 +33,17 @@ const App = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
       <div className="">
         <UserContext.Provider value={{loggedInUser:"joshi"}}>
            <Header />
         </UserContext.Provider>
         
         <Outlet />
-      </div>
+      </div> 
     </UserContext.Provider>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
