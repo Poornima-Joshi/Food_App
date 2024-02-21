@@ -10,26 +10,24 @@ const RestaurantCard = ({resData}) => {
   
   return (
     <>
-      <div className="res-card">
-        <div className="res-card-img ">
+      <div className="w-[260px] bg-white p-3 rounded-lg shadow-lg shadow-slate-100 relative" key={id}>
+        <div className="">
           <img
             src={RES_URL+cloudinaryImageId}
-            alt=""
-            className="shadow-sm"
+            className="object-cover rounded-2xl w-[22rem] h-[12rem]"
           />
         </div>
-        <div className="res-card-footer">
-          <p className="restro-name">{name}</p>
-          <p className="res-rating">
+        <div className="mt-2">
+          <p className="font-bold text-[17px] text-cyan-800 w-[200px] overflow-hidden whitespace-nowrap text-ellipsis">{name}</p>
+          <p className="mt-1 text-gray-500 font-bold">
             <span>
-              <i className="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill text-green-800"></i>
             </span>{" "}
             <span>{avgRating}</span>{" "}
             <span><i className="bi bi-dot"></i></span><span>{resData?.info?.sla?.slaString}</span>
           </p>
-          <p className="cuisines">{cuisines.join(",")}</p>
-          <p className="areaName mb-0">{areaName}</p>
-          <p className="text-dark">User: {loggedInUser}</p>
+          <p className="w-[200px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-500">{cuisines.join(",")}</p>
+          <p className="areaName text-gray-500">{areaName}</p>
         </div>
       </div>
     </>
@@ -42,7 +40,7 @@ export const withDiscountCard = (RestaurantCard) =>{
     const {header,subHeader} = resData?.info?.aggregatedDiscountInfoV3
     return(
      <>
-       <p className="position-absolute discount ms-2">{header} {subHeader}</p>
+       <p className="absolute z-10 ms-5 mt-5 text-lg text-white drop-shadow-lg font-bold">{header} {subHeader}</p>
        <RestaurantCard {...props}/>
      </>
     )

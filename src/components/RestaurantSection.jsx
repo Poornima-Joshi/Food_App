@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import RestaurantCard, { withDiscountCard } from "./RestaurantCard";
 import { RES_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
@@ -9,68 +9,52 @@ const RestaurantSection = () => {
   const [searchText, setSearchText] = useState("");
   const [storeData, setStoreData] = useState([]);
   const [filData, setFilData] = useState({ Rating: "false", Offers: "false" });
-  //const [page, setPage] = useState(1);
 
   const RestaurantDiscount = withDiscountCard(RestaurantCard);
-  const {loggedInUser,setUserName} = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
   useEffect(() => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleInfiniteScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleInfiniteScroll);
-  //   };
-  // }, []);
-
   const fetchData = async () => {
     const data = await fetch(RES_API_URL);
-    // const data = await fetch(RES_API_URL + `&page=${page}`);
+
     const json = await data.json();
     const restaurant =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    // setListOfRestaurant((prev) => [...prev, ...restaurant]);
-    // setStoreData((prev) => [...prev, ...restaurant]);
     setListOfRestaurant(restaurant);
     setStoreData(restaurant);
     console.log(restaurant);
   };
-  // const handleInfiniteScroll = () => {
-  //   if (
-  //     window.innerHeight + document.documentElement.scrollTop + 1 >=
-  //     document.documentElement.scrollHeight
-  //   ) {
-  //     setPage((prev) => prev + 1);
-  //   }
-  // };
 
   return (
     <>
-      {listOfRestaurant.length === 0 ? (
+      {listOfRestaurant?.length === 0 ? (
         <div>loding</div>
       ) : (
         <>
-          <h4 className="tag-name res-name pb-3 pt-4">
+          <h4 className="text-2xl font-bold mt-8 mb-6">
             Restaurants with online food delivery in Hyderabad
           </h4>
 
-          <div className="filter-container pb-4">
-            <div>
+          <div className="flex items-center mb-5 gap-5 flex-wrap">
+            {/* <div>
               <label>UserName:</label>
-              <input type="text" value={loggedInUser} onChange={(e)=>(
-                setUserName(e.target.value)
-              )} />
-            </div>
-            <div className="search-box">
+              <input
+                type="text"
+                value={loggedInUser}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div> */}
+            <div className="w-[400px]  relative">
               <input
                 type="text"
                 name="search-input"
                 id="resSearch"
                 placeholder="search"
-                className=""
+                className="w-full px-2 py-2 border-2 border-slate-300 rounded shadow-sm  focus:outline-cyan-500"
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
@@ -78,7 +62,7 @@ const RestaurantSection = () => {
                 }}
               />
               <button
-                className="search-btn"
+                className="absolute right-2 top-2"
                 onClick={() => {
                   const search = listOfRestaurant.filter((data) => {
                     return data.info.name
@@ -104,10 +88,10 @@ const RestaurantSection = () => {
                 Ratings 4.0+
               </button>
             </div> */}
-            <div className="filter ms-3">
+            <div className="">
               <input
                 type="checkbox"
-                className="btn-check"
+                className="appearance-none indeterminate:bg-gray-300"
                 id="btn-check"
                 onChange={(e) => {
                   setFilData({
@@ -118,7 +102,7 @@ const RestaurantSection = () => {
                 }}
               />
               <label
-                className="btn btn-light border"
+                className={filData.Rating === true ? "px-2 py-2 border-2 bg-white border-cyan-500 rounded shadow-sm": "px-2 py-2 border-2 bg-white border-slate-300 rounded shadow-sm"}
                 htmlFor="btn-check"
                 onClick={() => {
                   if (filData.Rating !== true) {
@@ -127,11 +111,11 @@ const RestaurantSection = () => {
                         return data.info.avgRating;
                       } else if (
                         data.info.avgRating > 4 &&
-                        data.info.aggregatedDiscountInfoV3===true
+                        data.info.aggregatedDiscountInfoV3 === true
                       ) {
                         return data.info.avgRating;
                       }
-                      return null
+                      return null;
                     });
                     setStoreData(filterData);
                   } else {
@@ -224,11 +208,11 @@ const RestaurantSection = () => {
             </div>
           </div>
 
-          <div className="res-section">
-            {storeData.map((restaurant) => (
+          <div className="flex gap-10 flex-wrap">
+            {storeData?.map((restaurant) => (
               <Link
                 to={"/restaurants/" + restaurant.info.id}
-                className="res-link position-reletive"
+                className="duration-[0.5s] hover:duration-[0.5s] hover:scale-[0.9]"
                 key={restaurant.info.id}
               >
                 {restaurant.info.aggregatedDiscountInfoV3 ? (

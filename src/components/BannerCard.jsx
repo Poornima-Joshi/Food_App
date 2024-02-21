@@ -6,10 +6,13 @@ const BannerCard = (props) => {
  
   return (
     <>
-      <div className="menu-card">
-        <img
+      <div className="menu-card w-[8rem] flex-none shadow-sm rounded">
+        <div>
+         <img
           src={BANNER_URL+imageId}
-        />
+          className="object-cover rounded "
+         />
+        </div>
       </div>
     </>
   ); 

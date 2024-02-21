@@ -11,9 +11,7 @@ const useRestaurantData = () =>{
     const fetchData = async () =>{
         const data = await fetch(RES_API_URL);
         const json = await data.json();
-        
         setResData(json);
-        
     }
     return resData;
 }

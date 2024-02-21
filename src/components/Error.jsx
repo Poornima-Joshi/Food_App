@@ -1,11 +1,10 @@
-import { useRouteError } from "react-router-dom";
+import errorImg from "../images/pagenotfound.svg";
 
 const Error = () =>{
-    const err = useRouteError();
+    
     return(
         <div>
-            <h1>Oops!!!</h1>
-            <h2>{err.status} : {err.statusText}</h2>
+            <img src={errorImg} className="w-screen h-screen" />
         </div>
     )
 }

@@ -13,9 +13,10 @@ const RestaurantChainsSection = () => {
 
   useEffect(() => {
     const ResData =
-      resData?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
+      resData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-    const header = resData?.data?.cards?.[1].card?.card?.header;
+    const header = resData?.data?.cards?.[2]?.card?.card;
+    console.log(header)
     setHeaderName(header);
     
     setListOfRestaurant(ResData);
@@ -23,41 +24,25 @@ const RestaurantChainsSection = () => {
   }, [resData]);
   if (listOfRestaurant === null) return <RestaurantSkeleton />;
 
-  // const fetchData = async () => {
-  //   const data = await fetch(RES_API_URL,);
-  //   const json = await data.json();
-
-  //   const restaurant =
-  //
-  //   setListOfRestaurant(restaurant);
-  //   setStoreData(restaurant);
-  // };
 
   return (
     <>
-      <div className="tag-container py-3">
-        <h4 className="tag-name mb-0">{headerName?.title}</h4>
-        <div className="tag-btn">
-          <button className="btn btn-link btn-lg p-0 me-2">
-            <i className="bi bi-arrow-left-circle-fill"></i>
-          </button>
-          <button className="btn btn-link btn-lg p-0 ">
-            <i className="bi bi-arrow-right-circle-fill"></i>
-          </button>
-        </div>
+      <div className="mt-8 mb-6">
+        <h1 className="text-2xl font-bold">{headerName?.title}</h1>
       </div>
 
-      <div className="res-overflow">
+      <div className="flex gap-10 justify-between overflow-hidden">
         {listOfRestaurant?.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
-            className="res-link "
+            className="duration-[0.5s] hover:duration-[0.5s] hover:scale-[0.9] "
             key={restaurant.info.id}
           >
             <RestaurantChainsCard resData={restaurant} />
           </Link>
         ))}
       </div>
+      <hr className="mt-12 border-2"/>
     </>
   );
 };

@@ -1,7 +1,12 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Outlet,createHashRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  createHashRouter,
+} from "react-router-dom";
+import { Provider, useDispatch } from "react-redux";
 
 //module
 import Header from "./components/Header";
@@ -9,18 +14,22 @@ import Body from "./components/Body";
 import Search from "./components/Search";
 import Offers from "./components/Offers";
 import Cart from "./components/Cart";
-import Help from "./components/Help";
+import Contact from "./components/Contact";
 import SignIn from "./components/SignIn";
 //import RestaurantMenu from "./components/RestaurantMenu";
-import RestaurantMenus from "./components/RestaurantMenus";
+//import RestaurantMenus from "./components/RestaurantMenus";
 import Children from "./components/Children";
 import ProfileClass from "./components/ProfileClass";
 import Error from "./components/Error";
 //import Count from "./components/Count";
 import UserContext from "./utils/UserContext";
 import appStore from "./utils/appStore";
+import { useDispatch } from "react-redux";
+import Footer from "./components/footer";
 
-const Count = lazy(() => import("./components/Count"));
+
+const RestaurantMenus = lazy(() => import("./components/RestaurantMenus"));
+const About = lazy(()=>import("./components/About"))
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -34,15 +43,15 @@ const App = () => {
 
   return (
     <Provider store={appStore}>
-      <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
-      <div className="">
-        <UserContext.Provider value={{loggedInUser:"joshi"}}>
-           <Header />
-        </UserContext.Provider>
-        
-        <Outlet />
-      </div> 
-    </UserContext.Provider>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="">
+          <Header />
+          <div className="min-h-[85dvh] bg-slate-50">
+          <Outlet />
+          </div>
+          <Footer/>
+        </div>
+      </UserContext.Provider>
     </Provider>
   );
 };
@@ -70,8 +79,8 @@ const appRouter = createBrowserRouter([
         element: <Offers />,
       },
       {
-        path: "/help",
-        element: <Help />,
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/signIn",
@@ -86,20 +95,20 @@ const appRouter = createBrowserRouter([
         element: <ProfileClass />,
       },
       {
-        path: "/count",
+        path: "/about",
         element: (
-          <Suspense fallback={<h1>Loding....</h1>}>
-            <Count />
+          <Suspense>
+            <About />
           </Suspense>
         ),
       },
-      // {
-      //     path: "/restaurants/:resId",
-      //     element: <RestaurantMenu/>
-      // },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenus />,
+        element: (
+          <Suspense>
+            <RestaurantMenus />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,
