@@ -2,3 +2,4 @@
 /dist
 .parcel-cache
 coverage
+src/components/headerCom.jsx
