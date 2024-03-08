@@ -1,7 +1,6 @@
 import { addItem} from "../utils/cartSlice";
 import { ITEM_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 const ItemList = ({ item }) => {
   const dispatch = useDispatch();

@@ -2,7 +2,6 @@ import { ITEM_URL } from "../utils/constants";
 import { MdDeleteForever } from "react-icons/md";
 import { TiMinus } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { incrementQuantity, decrementQuantity,removeItem } from "../utils/cartSlice";
 

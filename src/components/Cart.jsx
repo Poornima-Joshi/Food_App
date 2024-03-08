@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { addItem, clearItem } from "../utils/cartSlice";
+import { clearItem } from "../utils/cartSlice";
 import CartItems from "./CartItems";
 import EmptyCart from "./EmptyCart";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);

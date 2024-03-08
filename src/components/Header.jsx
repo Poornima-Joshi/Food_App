@@ -1,98 +1,14 @@
-import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
-import { useContext, useEffect, useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { TiThMenu } from "react-icons/ti";
 import logo from "../images/bhartifoodlogo.png";
-import { addItem } from "../utils/cartSlice";
 
 const Header = () => {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const onlineStatus = useOnlineStatus();
-  const { loggedInUser } = useContext(UserContext);
-
   const cartItems = useSelector((store) => store.cart.itemCount);
 
-  
-  
-
   return (
-    // <header>
-    //   <div className="header-shadow">
-    //     <div className="container">
-    //       <div className="header-main-container">
-    //         <div>
-    //           <Link to="/">
-    //             <img src={LOGO_URL} className="banner-logo" />
-    //           </Link>
-    //           <span className="logo-name">
-    //             <a href="#">
-    //               <span className="city-name">Jubilee Hills </span>{" "}
-    //               <span className="name">
-    //                 Aditya Enclave, Venkatagiri,Jub...
-    //               </span>
-    //               <i className="bi bi-chevron-down"></i>
-    //             </a>
-    //           </span>
-    //         </div>
-    //         <div>
-    //           <ul className="list">
-    //             <li className="list-item">
-    //               <span className="list-name">{loggedInUser}</span>
-    //             </li>
-    //             <li className="list-item">
-    //               <Link to="/search" className="list-link">
-    //                 <i className="bi bi-search list-icon"></i>{" "}
-    //                 <span className="list-name"> Search</span>
-    //               </Link>
-    //             </li>
-    //             {/* <li className="list-item">
-    //               <Link to="/offers" className="list-link">
-    //                 <i className="bi bi-octagon list-icon"></i>{" "}
-    //                 <span className="list-name"> Offers</span>
-    //               </Link>
-    //             </li> */}
-    //             <li className="list-item">
-    //               <Link to="/contact" className="list-link">
-    //                 <i className="bi bi-question-octagon list-icon"></i>{" "}
-    //                 <span className="list-name">Contact</span>
-    //               </Link>
-    //             </li>
-    //             <li className="list-item">
-    //               <Link to="/signIn" className="list-link">
-    //                 <i className="bi bi-person list-icon"></i>{" "}
-    //                 <span className="list-name">Sign In</span>
-    //               </Link>
-    //             </li>
-    //             <li className="list-item">
-    //               <Link to="/cart" className="list-link">
-    //                 <i className="bi bi-bag list-icon"></i>{" "}
-    //                 <span className="list-name">Cart ({cartItems.length})</span>
-    //               </Link>
-    //             </li>
-    //             <li className="list-item">
-    //               <Link to="/profile" className="list-link">
-    //                 <i className="bi bi-bag list-icon"></i>{" "}
-    //                 <span className="list-name">Profile</span>
-    //               </Link>
-    //             </li>
-    //             <li className="list-item">
-    //               <Link to="/count" className="list-link">
-    //                 <i className="bi bi-bag list-icon"></i>{" "}
-    //                 <span className="list-name">Count</span>
-    //               </Link>
-    //             </li>
-    //             <li className="list-item">
-    //               Status: {onlineStatus ? "🟢" : "🔴"}
-    //             </li>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </header>
     <>
       <div className="shadow-lg  bg-white  sticky start-0 top-0 end-0 z-50">
         <nav className="flex justify-between px-8 items-center flex-wrap py-3 gap-5 max-w-7xl mx-auto ">
@@ -125,7 +41,7 @@ const Header = () => {
           </ul>
           <div className="flex items-center gap-4 flex-wrap">
             <div>
-              <Link to="/cart" >
+              <Link to="/cart">
                 <button className="px-3 hover:bg-cyan-800 hover:text-white  text-cyan-500 text-lg  py-[1px] rounded-[7px] border border-cyan-500 hover:border-cyan-800">
                   <i className="bi bi-cart3"></i>
                   <span className="">{cartItems}</span>
@@ -133,11 +49,9 @@ const Header = () => {
               </Link>
             </div>
             <div>
-              
-                <button className="px-2 hover:bg-cyan-800 hover:text-white text-cyan-500 text-lg  py-[1px] rounded-[7px] border border-cyan-500 hover:border-cyan-800">
-                  Login
-                </button>
-             
+              <button className="px-2 hover:bg-cyan-800 hover:text-white text-cyan-500 text-lg  py-[1px] rounded-[7px] border border-cyan-500 hover:border-cyan-800">
+                Login
+              </button>
             </div>
           </div>
 
