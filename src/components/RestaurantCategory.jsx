@@ -4,7 +4,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const RestaurantCategory = ({ data,showItem,setShowIndex }) => {
   
  
-  handleClick=()=>{
+ const handleClick=()=>{
     setShowIndex();
   }
 
