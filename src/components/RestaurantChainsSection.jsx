@@ -1,37 +1,33 @@
-import { useEffect, useState } from "react";
 import RestaurantChainsCard from "./RestaurantChainsCard";
-import useRestaurantData from "../utils/useRestaurantData";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import RestaurantSkeleton from "./RestaurantSkeleton";
 
-const RestaurantChainsSection = () => {
-  const [listOfRestaurant, setListOfRestaurant] = useState(null);
-  const [headerName,setHeaderName] = useState('');
+const RestaurantChainsSection = ({data}) => {
+  const resData = data;
+  const listOfRestaurant = resData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  const headerName = resData?.data?.cards?.[2]?.card?.card;
 
-  const resData = useRestaurantData();
-  console.log(resData);
-
-  useEffect(() => {
-    const ResData =
-      resData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    const header = resData?.data?.cards?.[2]?.card?.card;
-    console.log(header)
-    setHeaderName(header);
-    
-    setListOfRestaurant(ResData);
-   
-  }, [resData]);
-  if (listOfRestaurant === null) return <RestaurantSkeleton />;
-
+  const slideLeft = () => {
+    let slider = document.getElementById("slider2");
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+  const slideRight = () => {
+    let slider = document.getElementById("slider2");
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
 
   return (
     <>
-      <div className="mt-8 mb-6">
-        <h1 className="text-2xl font-bold">{headerName?.title}</h1>
+     <div className="flex justify-between items-center mt-8 mb-6">
+      <h1 className="text-2xl font-bold ">{headerName?.title}</h1>
+      <div>
+        <button className="text-slate-500 hover:text-slate-600 text-2xl mr-2" onClick={slideLeft}><FaCircleChevronLeft /></button>
+        <button className="text-slate-500 text-2xl hover:text-slate-600" onClick={slideRight}><FaCircleChevronRight /></button>
+      </div>
       </div>
 
-      <div className="flex gap-10 justify-between overflow-hidden">
+      <div className="flex gap-12 overflow-x-scroll scroll-smooth whitespace-nowrap" style={{scrollbarWidth:"none"}} id={"slider2"}>
         {listOfRestaurant?.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}

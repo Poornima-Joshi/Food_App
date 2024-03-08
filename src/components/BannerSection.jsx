@@ -1,26 +1,30 @@
 import BannerCard from "./BannerCard";
-import BannerShimmer from "./BannerShimmer";
-import useRestaurantData from "../utils/useRestaurantData";
-import { useEffect, useState } from "react";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronRight } from "react-icons/fa6";
 
-const BananerSection = () => {
-  const [bannerInfo, setBannerInfo] = useState(null);
-
-  const bannerList = useRestaurantData();
-
-  useEffect(() => {
-    const ResData =
-      bannerList?.data?.cards?.[0]?.card?.card?.imageGridCards?.info;
-    setBannerInfo(ResData);
-  }, [bannerList]);
-
-  if (bannerInfo === null) return <BannerShimmer />;
+const BananerSection = ({data}) => {
+  const header = data?.header;
+  const bannerInfo = data?.imageGridCards?.info;
+  
+  const slideLeft = () => {
+    let slider = document.getElementById("slider1");
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+  const slideRight = () => {
+    let slider = document.getElementById("slider1");
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">What's on your mind?</h1>
-
-      <div className="flex overflow-hidden gap-6">
+      <div className="flex justify-between items-center mb-6">
+      <h1 className="text-2xl font-bold ">{header?.title}</h1>
+      <div>
+        <button className="text-slate-500 hover:text-slate-600 text-2xl mr-2" onClick={slideLeft}><FaCircleChevronLeft /></button>
+        <button className="text-slate-500 text-2xl hover:text-slate-600" onClick={slideRight}><FaCircleChevronRight /></button>
+      </div>
+      </div>
+      <div className="flex overflow-x-scroll scroll-smooth whitespace-nowrap gap-6" style={{scrollbarWidth:"none"}} id={"slider1"}>
         {bannerInfo?.map((data) => (
           <BannerCard key={data?.id} bannerData={data} />
         ))}

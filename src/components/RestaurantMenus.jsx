@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
-import RestaurantSkeleton from "./RestaurantSkeleton";
-import { Link, Outlet } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
+import ResMenuShimmer from "./ResMenuShimmer";
 
 const RestaurantMenus = () => {
   const { resId } = useParams();
@@ -12,16 +11,13 @@ const RestaurantMenus = () => {
   
   const [showIndex, setShowIndex] = useState();
 
-  if (menuData === null) return <RestaurantSkeleton />;
+  if (menuData === null) return <ResMenuShimmer />;
 
   const { name, areaName, cuisines, sla, avgRating, totalRatingsString } =
-    menuData?.data?.cards[2]?.card?.card?.info;
-  console.log(
-    menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-  );
+    menuData?.data?.cards[0]?.card?.card?.info;
 
   const categories =
-    menuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (data) => {
         return (
           data?.card?.card?.["@type"] ===
@@ -29,10 +25,9 @@ const RestaurantMenus = () => {
         );
       }
     );
-  console.log(categories);
 
   return (
-    <div className="bg-slate-50">
+    <div>
       <div className="max-w-4xl mx-auto py-12">
         <div className="flex justify-between  bg-white p-4 rounded-lg shadow-sm">
           <div>

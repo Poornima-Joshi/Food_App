@@ -133,11 +133,11 @@ const Header = () => {
               </Link>
             </div>
             <div>
-              <Link to="login">
+              
                 <button className="px-2 hover:bg-cyan-800 hover:text-white text-cyan-500 text-lg  py-[1px] rounded-[7px] border border-cyan-500 hover:border-cyan-800">
                   Login
                 </button>
-              </Link>
+             
             </div>
           </div>
 

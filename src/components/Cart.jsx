@@ -8,9 +8,6 @@ import { useEffect } from "react";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-
-  
-
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
@@ -21,7 +18,7 @@ const Cart = () => {
       {cartItems.length === 0 ? (
         <EmptyCart/>
       ) : (
-        <div className="bg-slate-50">
+        <div>
           <div className="max-w-6xl mx-auto py-12">
             <div className="bg-white px-4 py-4 rounded shadow-sm">
               <h1 className="text-2xl font-serif font-bold text-cyan-950 drop-shadow-sm">

@@ -2,7 +2,7 @@ import food from "../images/food.png";
 
 const About = () => {
   return (
-    <div className="bg-slate-50">
+    <div>
       <div className="max-w-7xl mx-auto px-10 py-7">
         <div className="card bg-white p-4 rounded shadow-sm">
           <h1 className="text-2xl text-cyan-500 font-extrabold text-center drop-shadow-sm mt-6">
