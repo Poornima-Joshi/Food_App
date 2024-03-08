@@ -13,7 +13,7 @@ import Error from "./components/Error";
 import UserContext from "./utils/UserContext";
 import appStore from "./utils/appStore";
 import { useDispatch } from "react-redux";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 
 
 
