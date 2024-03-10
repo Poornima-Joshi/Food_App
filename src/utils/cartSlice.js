@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")) || [];
+const itemCount = cartFromLocalStorage.reduce((total, item) => total + item.quantity, 0);
+
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: cartFromLocalStorage,
-    itemCount: cartFromLocalStorage.length,
+    itemCount: itemCount
   },
   reducers: {
     addItem: (state, action) => {
@@ -16,12 +18,12 @@ const cartSlice = createSlice({
       if (existingItemIndex !== -1) {
         // If item already exists in the cart, increase its quantity
         state.items[existingItemIndex].quantity += 1;
-        state.itemCount++;
+        state.itemCount += 1;
       } else {
         // If item doesn't exist, add it to the cart with quantity 1
         newItem.quantity = 1;
         state.items.push(newItem);
-        state.itemCount++;
+        state.itemCount += 1;
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
@@ -30,7 +32,7 @@ const cartSlice = createSlice({
       const itemIndexToRemove = state.items.findIndex(item => item.card.info.id === itemIdToRemove);
       if (itemIndexToRemove !== -1) {
         state.items.splice(itemIndexToRemove, 1);
-        state.itemCount--;
+        state.itemCount -= 1;
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },
@@ -44,7 +46,7 @@ const cartSlice = createSlice({
       const item = state.items.find(item => item.card.info.id === itemId);
       if (item) {
         item.quantity += 1;
-        state.itemCount++;
+        state.itemCount += 1;
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },
@@ -54,7 +56,7 @@ const cartSlice = createSlice({
       const item = state.items.find(item => item.card.info.id === itemId);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
-        state.itemCount--;
+        state.itemCount -= 1;
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },

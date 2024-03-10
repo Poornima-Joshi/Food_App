@@ -4,6 +4,7 @@ import { TiMinus } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { incrementQuantity, decrementQuantity,removeItem } from "../utils/cartSlice";
+import  noimage from "../../src/images/no-image.png";
 
 const CartItems = ({ item }) => {
   
@@ -68,7 +69,7 @@ const CartItems = ({ item }) => {
             <td className="border border-cyan-500 border-x-0 border-t-0 py-1 text-left">
               <div className="w-[80px] h-[70px] rounded rounded-full">
               <img
-                  src={ITEM_URL + item?.card?.info?.imageId}
+                  src={item?.card?.info?.imageId ? ITEM_URL + item?.card?.info?.imageId:noimage}
                   className="object-cover h-[70px] w-[80px] rounded rounded-full"
                 />
               </div>

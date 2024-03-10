@@ -1,6 +1,7 @@
 import { addItem} from "../utils/cartSlice";
 import { ITEM_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
+import  noimage from "../../src/images/no-image.png";
 
 const ItemList = ({ item }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const ItemList = ({ item }) => {
   return (
     <div>
       {item?.map((item) => (
+       
         <div
           key={item?.card?.info?.id}
           className="mt-3 bg-slate-50 rounded shadow"
@@ -34,9 +36,9 @@ const ItemList = ({ item }) => {
               </p>
             </div>
             <div>
-              <div className="w-[150px] h-[100px] border rounded">
+              <div className="w-[150px] h-[100px] border rounded bg-blue-500">
                 <img
-                  src={ITEM_URL + item?.card?.info?.imageId}
+                  src={item?.card?.info?.imageId ? ITEM_URL + item?.card?.info?.imageId:noimage}
                   className="object-cover h-[100px] w-[150px] rounded"
                 />
               </div>

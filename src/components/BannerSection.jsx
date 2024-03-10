@@ -3,8 +3,11 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 
 const BananerSection = ({data}) => {
+  console.log(data);
   const header = data?.header;
   const bannerInfo = data?.imageGridCards?.info;
+  console.log(header);
+  console.log(bannerInfo);
   
   const slideLeft = () => {
     let slider = document.getElementById("slider1");
