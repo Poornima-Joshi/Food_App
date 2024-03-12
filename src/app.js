@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import {createBrowserRouter,RouterProvider,Outlet} from "react-router-dom";
+import {createHashRouter,RouterProvider,Outlet} from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
 
 //module
@@ -46,7 +46,7 @@ const App = () => {
   );
 };
 
-const appRouter = createBrowserRouter([
+const appRouter = createHashRouter([
   {
     path: "/",
     element: <App />,
