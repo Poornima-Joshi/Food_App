@@ -9,9 +9,17 @@ const useRestaurantMenu = (resId) =>{
     },[]);
 
     const fetchData = async () =>{
-        const data = await fetch(MENU_API_URL + resId);
-        const json = await data.json();
-        setResInfo(json);
+        try {
+            const data = await fetch(
+               `https://api.allorigins.win/raw?url=${encodeURIComponent(
+                 MENU_API_URL+resId
+               )}`
+             );
+             const json = await data.json();
+             setResInfo(json);
+           } catch (error) {
+             console.error("res data is not fetching", error);
+           }
     };
     return resInfo;
 }

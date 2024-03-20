@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { RES_API_URL } from "./constants";
+import { RES_API_URL,SWIGGY_API } from "./constants";
 
 const useRestaurantData = () => {
   const [resData, setResData] = useState(null);
@@ -10,7 +10,11 @@ const useRestaurantData = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch(RES_API_URL);
+     const data = await fetch(
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(
+          RES_API_URL
+        )}`
+      );
       const json = await data.json();
       setResData(json);
     } catch (error) {
